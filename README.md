@@ -32,7 +32,7 @@ A Manifest V3 browser extension for **Firefox, Brave, and Chrome** that allows s
 3. Click **"Load Temporary Add-on..."**.
 4. In the file picker, navigate to this project folder:
    ```
-   d:\projects\extension\blackboard\manifest.json
+   \blackboard-bulk-downloader\manifest.json
    ```
    Select `manifest.json` and click **Open**.
 5. The extension **"Blackboard Bulk Downloader"** will appear under **Temporary Extensions**.
@@ -47,7 +47,7 @@ A Manifest V3 browser extension for **Firefox, Brave, and Chrome** that allows s
 3. Click **"Load unpacked"**.
 4. Select this project folder:
    ```
-   d:\projects\extension\blackboard
+   \blackboard-bulk-downloaderd
    ```
 5. The extension **"Blackboard Bulk Downloader"** will appear in your extensions list.
 6. Pin it to the toolbar via the puzzle-piece icon.
