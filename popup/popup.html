@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackboard Bulk Downloader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <img src="../icons/icon-48.png" alt="Logo" class="app-icon">
+        <div class="title-group">
+          <h1>Blackboard Downloader</h1>
+          <span class="version">v1.0.0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="content">
+
+      <!-- Course Status Card -->
+      <section class="card status-card" id="courseStatusCard">
+        <div class="status-indicator">
+          <span class="dot" id="statusDot"></span>
+          <span class="status-text" id="statusText">Checking active page...</span>
+        </div>
+        <div class="course-details" id="courseDetails" style="display: none;">
+          <div class="course-name" id="courseName"></div>
+          <div class="course-mode-badge" id="courseMode"></div>
+        </div>
+      </section>
+
+      <!-- Idle / Action Section -->
+      <section class="action-section" id="actionSection">
+        <button id="downloadBtn" class="btn btn-primary" disabled>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span id="downloadBtnText">Download All Files</span>
+        </button>
+      </section>
+
+      <!-- Progress Section (Hidden by default) -->
+      <section class="card progress-card" id="progressSection" style="display: none;">
+        <div class="progress-header">
+          <span class="progress-title" id="progressStatus">Starting...</span>
+          <span class="progress-percent" id="progressPercent">0%</span>
+        </div>
+
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+        </div>
+
+        <div class="progress-file-info" id="progressFileInfo" title=""></div>
+
+        <button id="cancelBtn" class="btn btn-secondary btn-sm">
+          Cancel Download
+        </button>
+      </section>
+
+      <!-- Result Card (Hidden by default) -->
+      <section class="card result-card" id="resultSection" style="display: none;">
+        <div class="result-icon-wrapper" id="resultIcon">
+          <!-- Populated by JS -->
+        </div>
+        <h3 class="result-title" id="resultTitle">Download Complete!</h3>
+        <p class="result-message" id="resultMessage"></p>
+        <button id="resetBtn" class="btn btn-outline btn-sm">Done</button>
+      </section>
+
+      <!-- Options Accordion -->
+      <section class="options-accordion">
+        <button class="accordion-toggle" id="optionsToggle" aria-expanded="false">
+          <span>Download Settings</span>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="accordion-content" id="optionsContent" style="display: none;">
+          <!-- Output Mode -->
+          <div class="option-group">
+            <label class="option-label">Save As</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="outputMode" value="zip" checked>
+                <span>Single ZIP Archive <span class="badge-rec">Recommended</span></span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="outputMode" value="individual">
+                <span>Individual Files</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Video Filter -->
+          <div class="option-group">
+            <label class="checkbox-option">
+              <input type="checkbox" id="skipVideos">
+              <span>Skip video files (.mp4, .mov, etc.) <small class="hint">Saves bandwidth</small></span>
+            </label>
+          </div>
+
+          <!-- Folder Recursion Depth -->
+          <div class="option-group">
+            <label for="maxDepth" class="option-label">Subfolder Depth Limit</label>
+            <select id="maxDepth" class="select-input">
+              <option value="1">1 level (Current section only)</option>
+              <option value="3">3 levels</option>
+              <option value="5" selected>5 levels (Default)</option>
+              <option value="10">10 levels (Deep crawl)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Runs with your active Blackboard session</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+
